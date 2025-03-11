@@ -9,3 +9,12 @@ export type Props = React.DetailedHTMLProps<
 export const Input = (props: Props) => {
   return <input {...props} className={twMerge("input", props?.className)} />;
 };
+
+export type LableProps = React.DetailedHTMLProps<
+  React.LabelHTMLAttributes<HTMLLabelElement>,
+  HTMLLabelElement
+>;
+
+export const Label = (props: LableProps) => (
+  <label {...props} className={twMerge("label", props?.className)} />
+);

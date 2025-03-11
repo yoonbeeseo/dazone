@@ -23,6 +23,19 @@
   }
 }
 
+@layer utilities {
+  .input-my {
+    @apply px-2.5;
+  }
+  .i-wrap {
+    @apply gap-1;
+  }
+
+  .l-msg {
+    @apply text-red-500 text-sm;
+  }
+}
+
 @theme {
   --color-theme: var(--color-red-500);
   --color-bg: var(--color-gray-50);
@@ -32,10 +45,16 @@
   .input {
     @apply px-1.5 dark:bg-gray-800 dark:text-gray-300;
   }
-}
 
-@layer utilities {
-  .input-my {
-    @apply px-2.5;
+  .div {
+    @apply flex gap-2.5;
+  }
+
+  .div.col {
+    @apply flex-col;
+  }
+
+  .label {
+    @apply text-gray-500 text-xs;
   }
 }
