@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 import { TextInput } from ".";
 
@@ -15,10 +15,9 @@ export const Row = (props: DivProps) => {
   return <div {...props} className={twMerge("div", props?.className)} />;
 };
 
-export interface InputWrapperProps {
+export interface InputWrapperProps extends PropsWithChildren {
   id: string;
   title: string;
-  children: React.ReactNode;
   message?: string | null;
 }
 export const InputWrapper = ({
