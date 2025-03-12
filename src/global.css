@@ -1,60 +1,31 @@
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-@layer base {
-  h1 {
-    /* @apply text-red-500 text-6xl; */
-  }
+@theme {
+  --color-theme: var(--color-sky-500);
+  --color-bg: var(--color-gray-50);
+  --color-darkBg: var(--color-zinc-900);
+  --color-warning: var(--color-red-500);
+  --color-color: var(--color-zinc-900);
+  --color-darkColor: var(--color-zinc-300);
+  --color-border: var(--color-gray-200);
+  --color-darkBorder: var(--color-zinc-700);
+}
 
+@layer base {
   button,
   a {
-    @apply p-1 px-2.5 bg-gray-50 rounded dark:bg-gray-800 dark:text-gray-200;
-  }
-
-  input,
-  select {
-    @apply border border-gray-200 rounded h-10 bg-bg px-0;
+    @apply flex flex-col h-10 rounded items-center justify-center px-2.5 cursor-pointer hover:opacity-80 hover:shadow-md active:opacity-50 font-light;
   }
 
   body {
-    @apply dark:bg-gray-900 dark:text-gray-200
-    bg-gray-50 sm:bg-amber-50 md:bg-cyan-50 lg:bg-pink-50
-      dark:sm:bg-pink-50 dark:md:bg-amber-50 dark:lg:bg-cyan-50;
+    @apply bg-white dark:bg-darkBg dark:text-darkColor;
   }
-}
-
-@layer utilities {
-  .input-my {
-    @apply px-2.5;
-  }
-  .i-wrap {
-    @apply gap-1;
-  }
-
-  .l-msg {
-    @apply text-red-500 text-sm;
-  }
-}
-
-@theme {
-  --color-theme: var(--color-red-500);
-  --color-bg: var(--color-gray-50);
 }
 
 @layer components {
-  .input {
-    @apply px-1.5 dark:bg-gray-800 dark:text-gray-300;
-  }
-
-  .div {
-    @apply flex gap-2.5;
-  }
-
-  .div.col {
-    @apply flex-col;
-  }
-
-  .label {
-    @apply text-gray-500 text-xs;
+  .flex-center {
+    @apply justify-center items-center;
   }
 }
