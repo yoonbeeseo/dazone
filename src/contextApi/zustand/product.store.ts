@@ -17,6 +17,11 @@ export const store = create<Props>(() => ({
       price: "329800",
       quan: 45,
       id: "111",
+      desc: `의자 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+`,
     },
     {
       imgs: [
@@ -29,6 +34,11 @@ export const store = create<Props>(() => ({
       price: "1129800",
       quan: 14,
       id: "2222",
+      desc: `인체공학적 디자인으로 설계된 과학 그자체 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -41,6 +51,11 @@ export const store = create<Props>(() => ({
       price: "79800",
       quan: 23,
       id: "33333",
+      desc: `무드등 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -53,6 +68,11 @@ export const store = create<Props>(() => ({
       price: "3000",
       quan: 1,
       id: "4444",
+      desc: `커피 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -65,6 +85,11 @@ export const store = create<Props>(() => ({
       price: "1000",
       quan: 5,
       id: "5555",
+      desc: `라면 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -77,6 +102,11 @@ export const store = create<Props>(() => ({
       price: "20000",
       quan: 34,
       id: "asdfkasdfasdf78900",
+      desc: `의류 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -89,6 +119,11 @@ export const store = create<Props>(() => ({
       price: "10000",
       quan: 64,
       id: "asdkfasdf0",
+      desc: `목도리 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -98,6 +133,11 @@ export const store = create<Props>(() => ({
       price: "10000",
       quan: 1,
       id: "66666",
+      desc: `연필1 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -107,6 +147,11 @@ export const store = create<Props>(() => ({
       price: "20000",
       quan: 2,
       id: "asdfasdf0123",
+      desc: `연필2 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -116,6 +161,11 @@ export const store = create<Props>(() => ({
       price: "30000",
       quan: 3,
       id: "77777",
+      desc: `연필3 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -125,15 +175,25 @@ export const store = create<Props>(() => ({
       price: "40000",
       quan: 4,
       id: "8888",
+      desc: `연필4 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
         "https://cdn.pixabay.com/photo/2023/07/19/04/56/european-shorthair-8136065_1280.jpg",
       ],
-      name: "고양이",
+      name: "연필4",
       price: "200000",
       quan: 72,
       id: "9999",
+      desc: `연필4 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -143,6 +203,11 @@ export const store = create<Props>(() => ({
       price: "9000000",
       quan: 3,
       id: "123123124",
+      desc: `호랑이 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -152,6 +217,11 @@ export const store = create<Props>(() => ({
       price: "500000",
       quan: 60,
       id: "2351234912",
+      desc: `호랑이 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
     {
       imgs: [
@@ -161,6 +231,11 @@ export const store = create<Props>(() => ({
       price: "5000000",
       quan: 8,
       id: "888889887900",
+      desc: `판다 is Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi officiis commodi harum corrupti! Cupiditate, veritatis!
+            Officiis, minus dolor delectus necessitatibus voluptas cumque
+            dignissimos mollitia aspernatur minima voluptatem sapiente explicabo
+            natus`,
     },
   ],
 }));

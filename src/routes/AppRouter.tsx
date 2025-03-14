@@ -1,30 +1,28 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
+import Loading from "../shared/Loading";
 
 const Home = lazy(() => import("./Home"));
 const Product = lazy(() => import("./Product"));
 const MyAccount = lazy(() => import("./MyAccount"));
 const Cart = lazy(() => import("./Cart"));
 const RootLayout = lazy(() => import("../layouts/RootLayout"));
+const ProductDetail = lazy(() => import("./ProductDetail"));
 
 export default function AppRouter() {
   return (
-    <Suspense
-      fallback={
-        <div className="fixed w-full h-screen flex flex-col gap-y-2.5 flex-center">
-          <CgSpinner className="text-4xl animate-spin text-theme" />
-          <h1 className="animate-pulse">App is Loading...</h1>
-        </div>
-      }
-    >
+    <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Routes>
           <Route path="/" Component={RootLayout}>
             <Route index Component={Home} />
             <Route path="cart" Component={Cart} />
             <Route path="myAccount" Component={MyAccount} />
-            <Route path="product" Component={Product} />
+            <Route path="product">
+              <Route index Component={Product} />
+              <Route path=":pid" Component={ProductDetail} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

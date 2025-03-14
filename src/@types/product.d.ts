@@ -4,4 +4,5 @@ interface ProductProps {
   price: string;
   id: string;
   imgs: string[];
+  desc: string;
 }

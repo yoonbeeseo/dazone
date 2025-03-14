@@ -11,6 +11,7 @@
   --color-darkColor: var(--color-zinc-300);
   --color-border: var(--color-gray-200);
   --color-darkBorder: var(--color-zinc-700);
+  --aspect-img: 16 / 9;
 }
 
 @layer base {
@@ -27,5 +28,24 @@
 @layer components {
   .flex-center {
     @apply justify-center items-center;
+  }
+
+  .ti-con {
+    @apply flex flex-col gap-1;
+  }
+  .ti-l {
+    @apply text-gray-400 text-xs;
+  }
+  .ti-i {
+    @apply outline-none h-10 rounded bg-bg px-2.5 dark:bg-darkBorder focus:border focus:border-theme;
+  }
+}
+
+@layer utilities {
+  .btn {
+    @apply rounded-full bg-theme text-white;
+  }
+  .border.btn {
+    @apply bg-transparent text-theme border;
   }
 }
