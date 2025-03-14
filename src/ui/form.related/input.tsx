@@ -13,7 +13,7 @@ export interface TextInputProps {
 
 export interface TextInputRef {
   focus: Func;
-  message: string | null;
+  message: "code 0" | null;
 }
 
 const TextInput = ({
@@ -27,7 +27,7 @@ const TextInput = ({
 }: TextInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const message = useMemo(() => {
+  const message = useMemo<"code 0" | null>(() => {
     const copy = value.toString();
     if (copy.length === 0) {
       return "code 0";

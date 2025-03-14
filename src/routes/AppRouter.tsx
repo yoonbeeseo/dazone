@@ -9,6 +9,7 @@ const MyAccount = lazy(() => import("./MyAccount"));
 const Cart = lazy(() => import("./Cart"));
 const RootLayout = lazy(() => import("../layouts/RootLayout"));
 const ProductDetail = lazy(() => import("./ProductDetail"));
+const Signup = lazy(() => import("./Signup"));
 
 export default function AppRouter() {
   return (
@@ -19,6 +20,7 @@ export default function AppRouter() {
             <Route index Component={Home} />
             <Route path="cart" Component={Cart} />
             <Route path="myAccount" Component={MyAccount} />
+            <Route path="signup" Component={Signup} />
             <Route path="product">
               <Route index Component={Product} />
               <Route path=":pid" Component={ProductDetail} />

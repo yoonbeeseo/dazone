@@ -32,7 +32,7 @@ const AuthPage = () => {
   }, [email, password, signin, navi]);
 
   return (
-    <div className="max-w-100 mx-auto mt-5">
+    <div className="max-w-100 mx-auto mt-5 flex flex-col">
       <Form
         onSubmit={onSubmit}
         className="border rounded dark:border-darkBorder border-border p-5"
@@ -58,11 +58,13 @@ const AuthPage = () => {
         <button className="btn">Submit</button>
       </Form>
 
-      <div>
-        <p>또는 회원가입</p>
-        <span></span>
+      <div className="my-5 relative flex justify-center">
+        <p className="bg-white px-2.5 text-xs dark:bg-darkBg">또는 회원가입</p>
+        <span className="absolute -z-1 block w-full h-[1px] bg-darkBg top-[50%] dark:bg-darkColor"></span>
       </div>
-      <button className="btn border">회원가입</button>
+      <button className="btn border" onClick={() => navi("/signup")}>
+        회원가입
+      </button>
     </div>
   );
 };
