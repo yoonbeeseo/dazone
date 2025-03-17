@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CgSpinner } from "react-icons/cg";
 import Loading from "../shared/Loading";
+import { AUTH } from "../contextApi/context";
 
 const Home = lazy(() => import("./Home"));
 const Product = lazy(() => import("./Product"));
@@ -10,21 +10,34 @@ const Cart = lazy(() => import("./Cart"));
 const RootLayout = lazy(() => import("../layouts/RootLayout"));
 const ProductDetail = lazy(() => import("./ProductDetail"));
 const Signup = lazy(() => import("./Signup"));
+const Order = lazy(() => import("./Order"));
 
 export default function AppRouter() {
+  const { user } = AUTH.use();
   return (
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Routes>
           <Route path="/" Component={RootLayout}>
             <Route index Component={Home} />
-            <Route path="cart" Component={Cart} />
             <Route path="myAccount" Component={MyAccount} />
             <Route path="signup" Component={Signup} />
             <Route path="product">
               <Route index Component={Product} />
               <Route path=":pid" Component={ProductDetail} />
             </Route>
+
+            {user && (
+              <>
+                <Route path="orders">
+                  <Route index Component={Order} />
+                  <Route path=":oid" element={<>order item</>} />
+                </Route>
+                <Route path="cart">
+                  <Route index Component={Cart} />
+                </Route>
+              </>
+            )}
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,12 +1,18 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Form, TextInput, TextInputRef } from "../ui";
 import makeRandomNumber from "../utils/makeRandomNumber";
+import { AUTH } from "../contextApi/context";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState(
+    import.meta.env.DEV ? "test@test.com" : ""
+  );
+  const [password, setPassword] = useState(import.meta.env.DEV ? "123123" : "");
+  const [confirmPassword, setConfirmPassword] = useState(
+    import.meta.env.DEV ? "123123" : ""
+  );
+  const [name, setName] = useState(import.meta.env.DEV ? "Dexter Yoon" : "");
 
   const [verificationCode, setVerificationCode] = useState("");
   const [randomNumber, setRandomNumber] = useState("");
@@ -24,7 +30,35 @@ const Signup = () => {
     setRandomNumber(number);
   };
 
-  const onSubmit = useCallback(() => {
+  const verify = useCallback((): boolean => {
+    if (randomNumber.length === 0) {
+      generateVerificationCode();
+
+      alert("인증번호가 재 전송되었습니다.");
+      verificationCodeRef.current?.focus();
+      return false;
+    }
+
+    if (verificationCode.length !== 6) {
+      alert("인증번호는 6자리 입니다.");
+      verificationCodeRef.current?.focus();
+      return false;
+    }
+
+    if (verificationCode !== randomNumber) {
+      alert("인증번호가 일치하지 않습니다.");
+      verificationCodeRef.current?.focus();
+      return false;
+    }
+    alert("인증되었습니다.");
+    return true;
+  }, [verificationCode, randomNumber, generateVerificationCode]);
+
+  const { signup } = AUTH.use();
+
+  const navi = useNavigate();
+
+  const onSubmit = useCallback(async () => {
     if (!isVerifying) {
       if (nameRef.current?.message === "code 0") {
         alert("이름을 확인해주세요.");
@@ -52,6 +86,18 @@ const Signup = () => {
       setIsVerifying(true);
       return verificationCodeRef.current?.focus();
     }
+
+    const verified = verify();
+    if (verified) {
+      const newUser: User = { email, name, uid: "", address: null };
+      const { message, success } = await signup(newUser, password);
+      if (!success && message) {
+        return alert(message);
+      }
+
+      alert("회원가입을 축하합니다.");
+      navi("/");
+    }
   }, [
     isVerifying,
     email,
@@ -59,6 +105,9 @@ const Signup = () => {
     password,
     confirmPassword,
     generateVerificationCode,
+    verify,
+    signup,
+    navi,
   ]);
 
   return (
@@ -127,9 +176,11 @@ const Signup = () => {
             >
               RE-SEND
             </button>
-            <p className="opacity-10">
-              {randomNumber.length > 0 && randomNumber}
-            </p>
+            {import.meta.env.DEV && (
+              <p className="opacity-10">
+                {randomNumber.length > 0 && randomNumber}
+              </p>
+            )}
           </div>
         )}
       </Form>

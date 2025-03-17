@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   const navi = useNavigate();
-  const { signin, signup } = AUTH.use();
+  const { signin } = AUTH.use();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

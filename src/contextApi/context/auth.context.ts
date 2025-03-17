@@ -6,7 +6,7 @@ export interface Context {
   isPending: boolean;
   signin: (email: string, password: string) => Promise<PromiseResult>; //! database
   signout: () => Promise<PromiseResult>;
-  signup: (newUser: User) => Promise<PromiseResult>;
+  signup: (newUser: User, password: string) => Promise<PromiseResult>;
 }
 
 export const initialState: Context = {

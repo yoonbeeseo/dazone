@@ -69,8 +69,49 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     },
     [fetchUser]
   );
+
+  const signup = useCallback(
+    async (newUser: User, password: string): Promise<PromiseResult> => {
+      try {
+        setIsPending(true);
+        const { user } = await auth.createUserWithEmailAndPassword(
+          newUser.email,
+          password
+        );
+        if (!user) {
+          return { success: false, message: "회원가입에 실패했습니다." };
+        }
+        const storedUser: User = { ...newUser, uid: user.uid };
+
+        await db.collection(FBCollection.USERS).doc(user.uid).set(storedUser);
+
+        setUser(storedUser);
+
+        return { success: true };
+      } catch (error: any) {
+        return { success: false, message: error.message };
+      } finally {
+        setIsPending(false);
+      }
+    },
+    []
+  );
+
+  const signout = useCallback(async (): Promise<PromiseResult> => {
+    auth.signOut();
+    setUser(null);
+
+    return { success: true };
+  }, []);
+
+  useEffect(() => {
+    console.log({ user });
+  }, [user]);
+
   return (
-    <AUTH.context.Provider value={{ initialized, isPending, user, signin }}>
+    <AUTH.context.Provider
+      value={{ initialized, isPending, user, signin, signup, signout }}
+    >
       {!initialized || isPending ? (
         <Loading>
           <h1 className="text-[100px] font-black text-theme">대존</h1>

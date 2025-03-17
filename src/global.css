@@ -48,4 +48,8 @@
   .border.btn {
     @apply bg-transparent text-theme border;
   }
+
+  .btn.rounded-sm {
+    @apply rounded-sm;
+  }
 }
