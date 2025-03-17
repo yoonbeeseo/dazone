@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import RootNavbar from "./RootNavbar";
 import {
   IoMenu,
@@ -21,6 +21,8 @@ const RootLayout = () => {
 
   const { user } = AUTH.use();
   const { cart } = CART.store();
+
+  const navi = useNavigate();
 
   const [scroll, setScroll] = useState(0);
 
@@ -74,7 +76,10 @@ const RootLayout = () => {
           </button>
 
           {user && (
-            <button className="text-2xl w-10 bg-bg dark:bg-darkBorder md:hidden relative">
+            <button
+              className="text-2xl w-10 bg-bg dark:bg-darkBorder md:hidden relative"
+              onClick={() => navi("/cart")}
+            >
               <IoBasketOutline />
               {cart.length > 0 && (
                 <span className="absolute top-[-4px] right-[-4px] rounded-full bg-red-500 text-white text-xs w-4 h-4">

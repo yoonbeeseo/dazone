@@ -29,4 +29,5 @@ export { firebase, firestore, db, fireauth, auth, firestorage, storage };
 export enum FBCollection {
   USERS = "users",
   PRODUCTS = "products",
+  ORDERS = "orders",
 }

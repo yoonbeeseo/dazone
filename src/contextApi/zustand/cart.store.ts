@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { products } from "../../lib/dummy";
 
 export interface Props {
   cart: ProductProps[];
@@ -10,7 +11,7 @@ export interface Props {
 }
 
 export const store = create<Props>((set) => ({
-  cart: [],
+  cart: [{ ...products[0], quan: 2 }],
   addToCart: (item) =>
     set((prev) => {
       const cart = [...prev.cart];
