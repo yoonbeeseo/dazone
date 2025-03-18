@@ -58,7 +58,8 @@ const RootNavbar = ({ menuHandler }: Props) => {
             onClick={onClick}
             className={twMerge(
               "hover:shadow-none hover:bg-bg hover:text-theme dark:hover:bg-darkBorder rounded-none",
-              isCurrentPath && "text-theme"
+              isCurrentPath && "text-theme",
+              (name === "홈" || name === "상품보기") && "md:hidden"
             )}
           >
             {name}

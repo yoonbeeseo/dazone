@@ -11,6 +11,7 @@ const RootLayout = lazy(() => import("../layouts/RootLayout"));
 const ProductDetail = lazy(() => import("./ProductDetail"));
 const Signup = lazy(() => import("./Signup"));
 const Order = lazy(() => import("./Order"));
+const NotFound = lazy(() => import("./NotFound"));
 
 export default function AppRouter() {
   const { user } = AUTH.use();
@@ -20,6 +21,8 @@ export default function AppRouter() {
         <Routes>
           <Route path="/" Component={RootLayout}>
             <Route index Component={Home} />
+            <Route path="*" Component={NotFound} />
+
             <Route path="myAccount" Component={MyAccount} />
             <Route path="signup" Component={Signup} />
             <Route path="product">
@@ -30,7 +33,7 @@ export default function AppRouter() {
             {user && (
               <>
                 <Route path="orders">
-                  <Route index Component={Order} />
+                  <Route index element={<Order {...user} />} />
                   <Route path=":oid" element={<>order item</>} />
                 </Route>
                 <Route path="cart">

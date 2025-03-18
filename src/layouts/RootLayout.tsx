@@ -8,7 +8,7 @@ import {
   IoMoon,
   IoBasketOutline,
 } from "react-icons/io5";
-import { AUTH, CART } from "../contextApi";
+import { AUTH } from "../contextApi";
 import { twMerge } from "tailwind-merge";
 
 const RootLayout = () => {
@@ -17,10 +17,9 @@ const RootLayout = () => {
     document.body.className === "dark"
   );
 
-  const menuHandler = () => setIsMenuActive((prev) => !prev);
+  const menuHandler = () => setIsMenuActive(false);
 
   const { user } = AUTH.use();
-  const { cart } = CART.store();
 
   const navi = useNavigate();
 
@@ -81,21 +80,24 @@ const RootLayout = () => {
               onClick={() => navi("/cart")}
             >
               <IoBasketOutline />
-              {cart.length > 0 && (
+              {/* {cart.length > 0 && (
                 <span className="absolute top-[-4px] right-[-4px] rounded-full bg-red-500 text-white text-xs w-4 h-4">
                   {cart.length}
                 </span>
-              )}
+              )} */}
             </button>
           )}
 
           <button
             className="text-2xl w-10 bg-bg dark:bg-darkBorder md:hidden"
-            onClick={menuHandler}
+            onClick={() => setIsMenuActive(true)}
           >
             <IoMenu />
           </button>
           {isMenuActive && <RootNavbar menuHandler={menuHandler} />}
+          <div className="hidden md:block">
+            <RootNavbar menuHandler={menuHandler} />
+          </div>
         </div>
       </header>
       {scroll >= 100 && (
