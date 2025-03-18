@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import RootNavbar from "./RootNavbar";
 import {
@@ -8,8 +8,9 @@ import {
   IoMoon,
   IoBasketOutline,
 } from "react-icons/io5";
-import { AUTH } from "../contextApi";
+import { AUTH, PRODUCT } from "../contextApi";
 import { twMerge } from "tailwind-merge";
+import { TextInput, TextInputRef } from "../ui";
 
 const RootLayout = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
@@ -35,6 +36,24 @@ const RootLayout = () => {
     };
   }, []);
 
+  const [keyword, setKeyword] = useState("");
+  const keywordRef = useRef<TextInputRef>(null);
+
+  const { onChangeKeyword, products } = PRODUCT.store();
+  const onSubmitKeyword = useCallback(() => {
+    if (keyword.length === 0) {
+      alert("검색어를 입력해주세요.");
+      return keywordRef.current?.focus();
+    }
+    const foundItem = products.find((item) => item.name.includes(keyword));
+    if (!foundItem) {
+      return alert("상품이 존재하지 않습니다.");
+    }
+    onChangeKeyword(keyword);
+    navi(`/product?productId=${foundItem.id}`);
+    setKeyword("");
+  }, [keyword, onChangeKeyword, products, navi]);
+
   return (
     <>
       <header
@@ -49,13 +68,20 @@ const RootLayout = () => {
           </Link>
           <form
             className="flex flex-1 gap-x-2.5"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSubmitKeyword();
+            }}
           >
-            <input
-              type="text"
-              className="flex-1 outline-none bg-bg px-2.5 dark:bg-darkBorder rounded"
-              placeholder="검색어를 입력해주세요."
-            />
+            <div className="flex-1">
+              <TextInput
+                placeholder="검색어를 입력해주세요."
+                id="keyword"
+                onChangeText={setKeyword}
+                ref={keywordRef}
+                value={keyword}
+              />
+            </div>
             <button className="bg-theme text-bg text-2xl w-10 dark:text-darkBg">
               <IoSearchOutline />
             </button>

@@ -4,7 +4,7 @@ export interface TextInputProps {
   value: string | number;
   onChangeText: PropsFunc<string>;
   id: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
 
@@ -47,9 +47,11 @@ const TextInput = ({
 
   return (
     <div className="ti-con">
-      <label htmlFor={id} className="ti-l">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={id} className="ti-l">
+          {label}
+        </label>
+      )}
       <input
         className="ti-i"
         type={type ?? "text"}

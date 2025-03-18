@@ -1,26 +1,34 @@
-import { useMemo } from "react";
+import { useTransition } from "react";
 import pricfy from "../utils/pricfy";
 import { CheckBox, Quan } from "../ui";
 import { CART } from "../contextApi";
+import Loading from "../shared/Loading";
 
-interface Props {
-  item: CartProps;
-  basket: CartProps[];
-  onSelect: (item: CartProps, isDelete?: boolean) => void;
-}
+const CartItem = (item: CartProps) => {
+  const { name, desc, imgs, price, quan, isOnBasket } = item;
 
-const CartItem = ({ item, basket, onSelect }: Props) => {
-  const { name, desc, imgs, id, price, quan } = item;
+  const { updateAnItem, removeAnItem } = CART.use();
 
-  const isSelected = useMemo(() => {
-    const foundItem = basket.find((basketItem) => basketItem.id === id);
-    return foundItem ? true : false;
-  }, [id, basket]);
+  const [isCbPending, startCb] = useTransition();
+  const [isQPending, startQ] = useTransition();
 
-  const { updateAnItem } = CART.use();
   return (
-    <div className="flex p-2.5 border-border border rounded dark:border-darkBorder">
-      <CheckBox state={isSelected} onClick={() => onSelect(item, isSelected)} />
+    <div className="flex p-2.5 border-border border rounded dark:border-darkBorder relative">
+      {isCbPending && <Loading className="absolute h-full bg-white/80" />}
+      <CheckBox
+        state={isOnBasket}
+        onClick={() =>
+          startCb(async () => {
+            const { success, message } = await updateAnItem({
+              ...item,
+              isOnBasket: !isOnBasket,
+            });
+            if (!success) {
+              return alert(message);
+            }
+          })
+        }
+      />
 
       <div className="flex-1 flex gap-x-2.5">
         <div className="overflow-hidden aspect-square w-30 sm:w-40">
@@ -35,14 +43,19 @@ const CartItem = ({ item, basket, onSelect }: Props) => {
           <p className="font-light line-clamp-4 leading-5">{desc}</p>
           <Quan
             quan={quan}
-            onChange={async (newQuan) => {
+            onChange={(newQuan) => {
               if (newQuan === 0) {
                 return;
               }
               const newItem: CartProps = { ...item, quan: newQuan };
-              await updateAnItem([newItem]);
-              onSelect(newItem);
+              startQ(async () => {
+                const { success, message } = await updateAnItem({ ...newItem });
+                if (!success) {
+                  return alert(message);
+                }
+              });
             }}
+            isPending={isQPending}
           />
         </div>
         <p>₩{pricfy(price)}</p>

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { db, FBCollection } from "../firebase";
 import { getCreatedAt } from "../../utils/dayjs";
 
-export default function useOrderQuery(uid: string) {
+export default function useCartQuery(uid: string) {
   const queryKey = ["cart"];
 
   const ref = db
@@ -61,7 +61,10 @@ export default function useOrderQuery(uid: string) {
     },
   });
 
-  const updateFn = async (action: CRUDAction, cart: CartProps) => {
+  const updateFn = async (
+    action: CRUDAction,
+    cart: CartProps | ProductProps
+  ) => {
     await mutation.mutateAsync({ action, cart });
   };
 

@@ -1,16 +1,26 @@
 import { PropsWithChildren } from "react";
 import { CgSpinner } from "react-icons/cg";
+import { twMerge } from "tailwind-merge";
 
 interface Props extends PropsWithChildren {
   message?: string;
+  className?: string;
+  noMessage?: boolean;
 }
-const Loading = ({ message, children }: Props) => {
+const Loading = ({ message, children, className, noMessage }: Props) => {
   return (
-    <div className="fixed w-full h-screen flex flex-col gap-y-2.5 flex-center">
+    <div
+      className={twMerge(
+        "fixed w-full h-screen flex flex-col gap-y-2.5 flex-center",
+        className
+      )}
+    >
       {children ?? (
         <>
           <CgSpinner className="text-4xl animate-spin text-theme" />
-          <h1 className="animate-pulse">{message ?? "App is Loading..."}</h1>
+          {noMessage !== true && (
+            <h1 className="animate-pulse">{message ?? "App is Loading..."}</h1>
+          )}
         </>
       )}
     </div>

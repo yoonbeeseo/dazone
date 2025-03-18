@@ -1,17 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pricfy from "../utils/pricfy";
 import { useCallback } from "react";
+import { CART } from "../contextApi";
 
 const ProductItem = (item: ProductProps) => {
   const { id, imgs, name, price, quan, desc } = item;
 
+  const { addToCart } = CART.use();
+  const navi = useNavigate();
   const onAdd = useCallback(async () => {
-    console.log("add item");
-    // await addToCart([item]);
-    console.log("done adding");
+    const { success, message } = await addToCart(item);
+    if (!success) {
+      return alert(message);
+    }
 
-    alert("장바구니에 담겼습니다.");
-  }, [item]);
+    if (confirm("장바구니에 담았습니다. 바로 결제하시겠습니까?")) {
+      navi("/cart");
+    }
+  }, [item, addToCart, navi]);
 
   return (
     <div className="flex flex-col border rounded border-border">

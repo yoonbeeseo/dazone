@@ -9,6 +9,7 @@ interface ProductProps {
 
 interface CartProps extends ProductProps {
   createdAt: string;
+  isOnBasket: boolean;
 }
 
 interface OrderProps {
