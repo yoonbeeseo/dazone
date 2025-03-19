@@ -13,7 +13,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     async (item: ProductProps): Promise<PromiseResult> => {
       try {
         const foundItem = data?.find((cartItem) => cartItem.id === item.id);
-
+        console.log("adding item");
         await updateFn(
           "CREATE",
           foundItem
@@ -21,8 +21,10 @@ const CartProvider = ({ children }: PropsWithChildren) => {
             : { ...item, quan: 1 }
         );
 
+        console.log("item added");
         return { success: true };
       } catch (error: any) {
+        console.log(error.message);
         return { message: error.message };
       }
     },

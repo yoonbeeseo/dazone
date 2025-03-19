@@ -8,3 +8,5 @@ interface PromiseResult {
   success?: boolean;
   message?: string | null;
 }
+
+type CRUDAction = "CREATE" | "READ" | "UPDATE" | "DELETE";

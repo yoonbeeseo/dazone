@@ -11,7 +11,7 @@ export default function useOrderQuery(uid: string) {
     .doc(uid)
     .collection(FBCollection.ORDERS);
   const fetchFn = async (): Promise<OrderProps[]> => {
-    const snap = await ref.get();
+    const snap = await ref.orderBy("createdAt", "desc").get();
 
     const data = snap.docs.map((doc) => ({ ...(doc.data() as OrderProps) }));
 
@@ -21,8 +21,6 @@ export default function useOrderQuery(uid: string) {
   const queryClient = useQueryClient();
 
   const cachingFn = () => queryClient.invalidateQueries({ queryKey });
-
-  type CRUDAction = "CREATE" | "READ" | "UPDATE" | "DELETE";
 
   const mutation = useMutation({
     mutationFn: async ({

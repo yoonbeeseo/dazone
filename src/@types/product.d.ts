@@ -5,7 +5,11 @@ interface ProductProps {
   id: string;
   imgs: string[];
   desc: string;
+  type?: ProductType;
+  uid?: string;
 }
+
+type ProductType = "의류" | "식자재" | "가구" | "문구류" | "애완동물";
 
 interface CartProps extends ProductProps {
   createdAt: string;

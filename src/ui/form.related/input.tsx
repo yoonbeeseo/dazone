@@ -1,4 +1,5 @@
 import { useRef, Ref, useImperativeHandle, useMemo, useEffect } from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface TextInputProps {
   value: string | number;
@@ -9,6 +10,11 @@ export interface TextInputProps {
   type?: React.HTMLInputTypeAttribute;
 
   ref: Ref<TextInputRef>;
+
+  props?: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
 }
 
 export interface TextInputRef {
@@ -24,6 +30,7 @@ const TextInput = ({
   value,
   placeholder,
   type,
+  props,
 }: TextInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -53,7 +60,8 @@ const TextInput = ({
         </label>
       )}
       <input
-        className="ti-i"
+        {...props}
+        className={twMerge("ti-i", props?.className)}
         type={type ?? "text"}
         id={id}
         value={value}
