@@ -54,12 +54,9 @@ export default function useCartQuery(uid: string) {
       }
     },
 
-    onError: (err) => {
-      console.log(err);
-    },
+    onError: () => {},
 
     onSuccess: () => {
-      console.log("query fn succeed");
       cachingFn();
     },
   });

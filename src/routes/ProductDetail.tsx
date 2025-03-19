@@ -1,65 +1,35 @@
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { PRODUCT } from "../contextApi";
-import { useEffect, useState, useCallback } from "react";
-import pricfy from "../utils/pricfy";
+import { db, FBCollection } from "../lib/firebase";
 import Loading from "../shared/Loading";
+import ProductItem from "../shared/ProductItem";
 
 const ProductDetail = () => {
   const { pid } = useParams<{ pid: string }>();
-  const { products } = PRODUCT.store();
 
-  const [isPending, setIsPending] = useState(true);
-  const [product, setProduct] = useState<null | ProductProps>(null);
-
-  const fetchProduct = useCallback(
-    (): Promise<ProductProps | string> =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          if (!pid) {
-            return resolve("상품 아이디가 존재하지 않습니다.");
-          }
-
-          const foundProduct = products.find((item) => item.id === pid);
-
-          if (!foundProduct) {
-            return resolve("해당 상품이 더 이상 존재하지 않습니다.");
-          }
-
-          return resolve(foundProduct);
-        }, 500);
-      }),
-    [products, pid]
-  );
-
-  useEffect(() => {
-    const fn = async () => {
-      setIsPending(true);
-      const res = await fetchProduct();
-
-      if (typeof res === "string") {
-        setProduct(null);
-        alert(res);
-      } else {
-        setProduct(res);
+  const { data, error, isPending } = useQuery({
+    queryFn: async (): Promise<null | ProductProps> => {
+      if (!pid) {
+        return null;
       }
-      setIsPending(false);
-    };
+      const ref = db.collection(FBCollection.PRODUCTS).doc(pid);
+      const snap = await ref.get();
+      const data = snap.data() as ProductProps;
 
-    fn();
+      return data ?? null;
+    },
+    queryKey: ["product", pid],
+  });
 
-    return () => {
-      fn();
-    };
-  }, [fetchProduct]);
+  if (isPending) {
+    return <Loading className="top-0" message="상품을 가져오는 중입니다." />;
+  }
 
-  return !product || isPending ? (
-    <Loading />
-  ) : (
-    <div>
-      <p>{product.name}</p>
-      <p>{pricfy(product.price)}원</p>
-    </div>
-  );
+  if (error || !data) {
+    return <h1>존재하지 않는 상품입니다.</h1>;
+  }
+
+  return <ProductItem {...data} />;
 };
 
 export default ProductDetail;
