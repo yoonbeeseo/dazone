@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import ProductItem from "../shared/ProductItem";
+import ProductItem from "../../shared/ProductItem";
 import { useQuery } from "@tanstack/react-query";
-import { db, FBCollection } from "../lib/firebase";
-import Loading from "../shared/Loading";
+import { db, FBCollection } from "../../lib/firebase";
+import Loading from "../../shared/Loading";
 
 const Product = () => {
   const keyword = useSearchParams()[0].get("keyword");

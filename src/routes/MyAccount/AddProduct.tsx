@@ -1,18 +1,18 @@
 import { useState, useRef, useCallback, useTransition } from "react";
-import { Form, TextInput, TextInputRef } from "../ui";
+import { Form, TextInput, TextInputRef } from "../../ui";
 import FileItem from "./FileItem";
-import Loading from "../shared/Loading";
-import { storage } from "../lib/firebase";
+import Loading from "../../shared/Loading";
+import { storage } from "../../lib/firebase";
 import { v4 } from "uuid";
 import { uploadBytes, getDownloadURL } from "firebase/storage";
-import useProductQuery from "../lib/query.related/product.query";
+import useProductQuery from "../../lib/query.related/product.query";
 
 const initialState: ProductProps = {
   name: "상품1",
   desc: "상품 내용은 ㄹ민아러미ㅏㄴㅇ러ㅣ만ㅇ러ㅣ만ㅇ러합니다.",
   id: "",
   imgs: [],
-  price: "500000",
+  price: 500001,
   quan: 1,
 };
 
@@ -150,6 +150,8 @@ const AddProduct = (user: User) => {
         ref={priceRef}
         label="상품가격"
         placeholder="10,000원"
+        type="number"
+        props={{ min: 0 }}
       />
 
       <TextInput

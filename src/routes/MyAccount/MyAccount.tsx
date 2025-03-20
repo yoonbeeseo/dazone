@@ -1,6 +1,6 @@
-import { MY } from "../contextApi";
+import { MY } from "../../contextApi";
 import AddProduct from "./AddProduct";
-import AuthPage from "./Auth.page";
+import AuthPage from "../Auth.page";
 import MyBasicInfo from "./MyBasicInfo";
 import MyPassword from "./MyPassword";
 import MyProducts from "./MyProducts";

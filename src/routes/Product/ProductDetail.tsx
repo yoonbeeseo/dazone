@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { db, FBCollection } from "../lib/firebase";
-import Loading from "../shared/Loading";
-import ProductItem from "../shared/ProductItem";
+import { db, FBCollection } from "../../lib/firebase";
+import Loading from "../../shared/Loading";
+import ProductItem from "../../shared/ProductItem";
 
 const ProductDetail = () => {
   const { pid } = useParams<{ pid: string }>();

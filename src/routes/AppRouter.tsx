@@ -4,14 +4,15 @@ import Loading from "../shared/Loading";
 import { AUTH } from "../contextApi/context";
 
 const Home = lazy(() => import("./Home"));
-const Product = lazy(() => import("./Product"));
-const MyAccount = lazy(() => import("./MyAccount"));
-const Cart = lazy(() => import("./Cart"));
+const Product = lazy(() => import("./Product/Product"));
+const MyAccount = lazy(() => import("./MyAccount/MyAccount"));
+const Cart = lazy(() => import("./Cart/Cart"));
 const RootLayout = lazy(() => import("../layouts/RootLayout"));
-const ProductDetail = lazy(() => import("./ProductDetail"));
+const ProductDetail = lazy(() => import("./Product/ProductDetail"));
 const Signup = lazy(() => import("./Signup"));
-const Order = lazy(() => import("./Order"));
+const Order = lazy(() => import("./Order/Order"));
 const NotFound = lazy(() => import("./NotFound"));
+const Test = lazy(() => import("./Test"));
 
 export default function AppRouter() {
   const { user } = AUTH.use();
@@ -19,6 +20,7 @@ export default function AppRouter() {
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Routes>
+          <Route path="test" Component={Test} />
           <Route path="/" Component={RootLayout}>
             <Route index Component={Home} />
             <Route path="*" Component={NotFound} />

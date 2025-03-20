@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import ProductItem from "../shared/ProductItem";
-import useProductQuery from "../lib/query.related/product.query";
-import Loading from "../shared/Loading";
+import ProductItem from "../../shared/ProductItem";
+import useProductQuery from "../../lib/query.related/product.query";
+import Loading from "../../shared/Loading";
 
 const MyProducts = (user: User) => {
   const { queryFn, queryKey } = useProductQuery(user);

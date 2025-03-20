@@ -1,5 +1,5 @@
 import React from "react";
-import { MY } from "../contextApi";
+import { MY } from "../../contextApi";
 import { twMerge } from "tailwind-merge";
 
 const targets: MY.Target[] = [

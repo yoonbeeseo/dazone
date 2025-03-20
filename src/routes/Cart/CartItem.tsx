@@ -1,15 +1,18 @@
 import { useTransition } from "react";
-import pricfy from "../utils/pricfy";
-import { CheckBox, Quan } from "../ui";
-import { CART } from "../contextApi";
-import Loading from "../shared/Loading";
+import pricfy from "../../utils/pricfy";
+import { CheckBox, Quan } from "../../ui";
+import { CART } from "../../contextApi";
+import Loading from "../../shared/Loading";
 
 const CartItem = (item: CartProps) => {
   const { name, desc, imgs, price, quan, isOnBasket } = item;
 
   const { updateAnItem, removeAnItem } = CART.use();
 
+  //! 체크박스 로딩 구현
   const [isCbPending, startCb] = useTransition();
+
+  //! 수량 변경시 로딩 구현
   const [isQPending, startQ] = useTransition();
 
   return (

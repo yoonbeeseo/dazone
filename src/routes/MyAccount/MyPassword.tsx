@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState, useTransition } from "react";
-import { Form, TextInput, TextInputRef } from "../ui";
-import { auth } from "../lib/firebase";
-import Loading from "../shared/Loading";
+import { Form, TextInput, TextInputRef } from "../../ui";
+import { auth } from "../../lib/firebase";
+import Loading from "../../shared/Loading";
 
 const MyPassword = (user: User) => {
   const [isPending, startTransition] = useTransition();

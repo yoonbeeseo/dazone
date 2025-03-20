@@ -1,8 +1,8 @@
 import { useRef, useState, useMemo, useCallback, useTransition } from "react";
-import { Form, TextInput, TextInputRef } from "../ui";
-import Loading from "../shared/Loading";
-import { db, FBCollection } from "../lib/firebase";
-import { AUTH } from "../contextApi";
+import { Form, TextInput, TextInputRef } from "../../ui";
+import Loading from "../../shared/Loading";
+import { db, FBCollection } from "../../lib/firebase";
+import { AUTH } from "../../contextApi";
 
 const MyBasicInfo = (user: User) => {
   const [name, setName] = useState(user.name);

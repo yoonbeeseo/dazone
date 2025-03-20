@@ -6,14 +6,14 @@ import {
   useTransition,
 } from "react";
 import CartItem from "./CartItem";
-import pricfy from "../utils/pricfy";
+import pricfy from "../../utils/pricfy";
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 import { v4 } from "uuid";
-import { CART } from "../contextApi";
-import useCartQuery from "../lib/query.related/cart.query";
-import useOrderQuery from "../lib/query.related/order.query";
-import { getCreatedAt } from "../utils/dayjs";
-import Loading from "../shared/Loading";
+import { CART } from "../../contextApi";
+import useCartQuery from "../../lib/query.related/cart.query";
+import useOrderQuery from "../../lib/query.related/order.query";
+import { getCreatedAt } from "../../utils/dayjs";
+import Loading from "../../shared/Loading";
 
 const Cart = (user: User) => {
   const { cart } = CART.use();

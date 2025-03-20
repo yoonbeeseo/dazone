@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getFromNow } from "../utils/dayjs";
-import pricfy from "../utils/pricfy";
+import { getFromNow } from "../../utils/dayjs";
+import pricfy from "../../utils/pricfy";
 import { IoChevronDown } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
 
